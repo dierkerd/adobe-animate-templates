@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>$TITLE</title>
+    <meta name="authoring-tool" content="$VERSION">
+    <meta name="ad.size" content="width=$WT,height=$HT">
+    <script src="https://s0.2mdn.net/ads/studio/Enabler.js"></script>
+
+    <!--[begin:AnimateCode]-->
+    <!--[start:CREATE_STYLE]-->
+    $CENTER_STYLE
+    <!--[start:CREATEJS_LIBRARY_SCRIPTS]-->
+    $CREATEJS_LIBRARY_SCRIPTS
+    <!--[start:ANIMATE_CC_SCRIPTS]-->
+    $ANIMATE_CC_SCRIPTS
+    <!--[start:SCRIPT_START]-->
+    $SCRIPT_START
+    var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+    var canvas_id = "$CANVAS_ID"
+    var anim_container_id="$ANIM_CONTAINER_ID";
+    function animateInit() {
+        canvas = document.getElementById(canvas_id);
+        anim_container = document.getElementById(anim_container_id);
+        dom_overlay_container = document.getElementById("dom_overlay_container");
+        /** [start:CREATE_LOADER] */
+        $CREATE_LOADER 
+        /** [start:LOAD_MANIFEST] */
+        $LOAD_MANIFEST
+        /** [start:PRELOAD_ASSETS] */
+        $PRELOAD_ASSETS 
+        /** [end:PRELOAD_ASSETS] */
+    }
+    /** [start:HANDLE_FILE_LOAD_START] */
+    $HANDLE_FILE_LOAD_START 
+    /** [start:HANDLE_FILE_LOAD_BODY] */
+    $HANDLE_FILE_LOAD_BODY 
+    /** [start:HANDLE_FILE_LOAD_END] */
+    $HANDLE_FILE_LOAD_END 
+    /** [start:HANDLE_COMPLETE_START] */
+    $HANDLE_COMPLETE_START 
+    /** [start:CREATE_STAGE] */
+    $CREATE_STAGE 
+    /** [start:START_ANIMATION] */
+    $START_ANIMATION 
+    /** [start:RESP_HIDPI] */
+    $RESP_HIDPI
+    /** [start:HANDLE_COMPLETE_END] */
+    $HANDLE_COMPLETE_END 
+    /** [start:PLAYSOUND] */
+    $PLAYSOUND
+    /** [end:PLAYSOUND] */
+    $SCRIPT_END
+    <!--[end:AnimateCode]-->
+</head>
+
+<body style="margin:0px">
+    <div id="$ANIM_CONTAINER_ID" style="background-color:$BG; width:$WTpx; height:$HTpx">
+        <canvas id="$CANVAS_ID" width="$WT" height="$HT" style="position: absolute; display: $CANVAS_DISP; background-color:$BG;"></canvas>
+        <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:$WTpx; height:$HTpx; position: absolute; left: 0px; top: 0px; display: $CANVAS_DISP;">
+        </div>
+    </div>
+    <!--[begin:PRELOADER_DIV]-->
+    $PRELOADER_DIV
+    <!--[end:PRELOADER_DIV]-->
+    <script>
+    (function(w,d) {
+        var body = d.getElementsByTagName("body")[0];
+
+        /** setup DCS/Enabler */
+        function enablerInit() {
+            if (!Enabler.isInitialized()) {
+                Enabler.addEventListener(studio.events.StudioEvent.INIT,enablerInitialized);
+            } else {
+                enablerInitialized();
+            }
+        }
+        body.addEventListener("load",enablerInit, false);
+        
+        /** DCS/Enabler loaded and ready */
+        function enablerInitialized() {
+            if (!Enabler.isVisible()) {
+                Enabler.addEventListener(studio.events.StudioEvent.VISIBLE,enablerAdVisible);
+            } else {
+                enablerAdVisible();
+            }
+        };
+
+        /** This ad is visible to the user */
+        function enablerAdVisible() {
+            /** call animate once we're ready and visible */
+    	   animateInit();
+        };
+        
+    })(window,document);    
+    </script>
+</body>
+
+</html>

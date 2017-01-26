@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>$TITLE</title>
+<meta name="ad.size" content="width=$WT,height=$HT">
+<script src="https://s0.2mdn.net/ads/studio/Enabler.js"></script>
+<script src="https://s0.2mdn.net/ads/studio/cached_libs/createjs_2015.11.26_54e1c3722102182bb133912ad4442e19_min.js"></script>
+<script src="$TITLE.js"></script>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background-color: #fff
+        }
+        
+        clickTag {
+            width: $WTpx;
+            height: $HTpx;
+            cursor: pointer/** used to change the cursor to a "hand" when hovered over. */
+        }
+        
+        canvas {
+            /** TODO: make sure the width and height are correct here... */
+            width: $WTpx;
+            height: $HTpx
+        }
+    </style>
+$SCRIPT_START
+		var canvas, stage, exportRoot;
+        var images = images || {};
+        var click_area;
+        
+		function cjs_init() {
+       		 $CJS_INIT
+        }
+        
+        function init() {
+            canvas = document.getElementById("canvas");
+            click_area = document.getElementById("clickTag");
+			images = images||{};
+			
+            if (!Enabler.isInitialized()) {
+                Enabler.addEventListener(
+                    studio.events.StudioEvent.INIT,
+                    enablerInitialized
+                );
+            } else {
+                enablerInitialized();
+            }
+        }
+
+        function enablerInitialized() {
+            if (!Enabler.isVisible()) {
+                Enabler.addEventListener(
+                    studio.events.StudioEvent.VISIBLE,
+                    adVisible
+                );
+            } else {
+                adVisible();
+            }
+        };
+
+
+        function adVisible() {
+    	   cjs_init();
+        };
+
+       
+        window.addEventListener('load', init);
+/** PLAYSOUND */
+$PLAYSOUND
+/** SCRIPT_END */
+$SCRIPT_END
+</head>
+<body>
+    <div id="clickTag">
+        <canvas id="canvas" width="$WT" height="$HT"></canvas>
+    </div>
+</body>
+
+</html>
